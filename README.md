@@ -1,3 +1,5 @@
+![machine learning on psychiatric disorders](https://user-images.githubusercontent.com/90532657/172986468-11895068-5ddd-438c-ae51-078bdd0e70a3.jpg)
+
 # Biomarker-search
 Machine learning project for CS4641 at Georgia Institute of Technology
 
@@ -22,3 +24,5 @@ Not much research has been done in this field using machine learning. We hope to
 Information on biomarkers for MDD can be very beneficial to doctors and researchers, but most of all to the patients suffering from the condition.
 The only risk associated with this work would be a waste of time and resources, which is well worth the risk for the oppurtunity this offers.
 The run times for the algorithms will vary based on the algorithm created but should not be longer than a day for each runtime and a couple of weeks until ready for deployment.
+
+
