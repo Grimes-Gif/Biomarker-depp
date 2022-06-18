@@ -1,4 +1,4 @@
-![machine learning on psychiatric disorders](https://user-images.githubusercontent.com/90532657/172986468-11895068-5ddd-438c-ae51-078bdd0e70a3.jpg)
+![MLinfo](https://user-images.githubusercontent.com/90532657/174424871-785ce7d2-3e6d-46a6-b7aa-ce24235c9a5f.PNG)
 
 # Biomarker-search
 Machine learning project for CS4641 at Georgia Institute of Technology
