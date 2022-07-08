@@ -33,7 +33,5 @@ different brain regions would run the risk of faulty or inconclusive results, du
 to individual differences in brain structure. 
 
 We finally ended up looking at an EEG dataset. EEG data is usually easier to work with than MRI data, as EEG data is less visual and more numerical. 
-Additionally, the brain waves recorded from EEG. Early results from PCA are promising, but we plan to experiment with a variety of methods, including 
-a methodology similar to cross validation, running a sweep of many clustering runs examining a handful of features at a time to pinpoint the those that
-promise greater results.
+Additionally, the brain waves recorded from EEG. Early results from PCA are promising, but we plan to experiment with a variety of methods.
 
