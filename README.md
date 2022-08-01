@@ -1,17 +1,37 @@
 ![MLinfo](https://user-images.githubusercontent.com/90532657/174424871-785ce7d2-3e6d-46a6-b7aa-ce24235c9a5f.PNG)
 
-# Biomarker-search
+# Psychiatric classification
 Machine learning project for CS4641 at Georgia Institute of Technology
-
 Collab: Saif Syed Ali, Ibraheem Abutair, Matthew Johnson, Micah Grimes
 
-Introduction
-The objective of this project is to use machine learning to gain insight on physical biomarkers present in the brain of patients diagnosed with major depressive disorder (MDD). Our inclusion criteria is as follows: subject must have been diagnosed with MDD by a medical professional and must be having a current episode of major depression OR has had an episode of major depression in the past 6 months. 
-The current research in this field is plentiful, but very few have used machine learning on imaging data in order to generate patterns. We believe that machine learning is especially useful in this field because it allows for the standardization, comparison, and subsequent analysis of datasets that come from different metrics/studies. Succesful completion of this project would allow us to provide physicians and researchers with possible predictive measures for the development of MDD. This would allow physicians to mark certain individuals as "high-risk" for MDD and can provide preventative care to the patient.
 
-Methods
-The dataset type used will be numerical data taken from the Archives of General Psychiatry. The nature of the sets is processed MRI data from individuals with MDD. The entire data sheet contains MRI results from 225 studies, which will be more than enough to run machine learning algorithms on. Each table from the dataset has 17 features. The targets will be discrete, as we hope to use these targets to determine specific biomarkers of MDD.
-Since the data was already standardized by the researchers (quality MRI studies will use a standardized template on which to "map" the brain of the subject onto), standardization should not be an issue. We will attempt to perform dimensionality reduction via a covariance filter. 
+## Introduction
+The objective of this project is to use machine learning to gain insight onto potential predictors or biomarkers present in the brain of patients diagnosed with psychiatric disorders. 
+
+Ideally the inclusion criteria is as follows: 
+1. subject must have been diagnosed with a psychiatric disorder by a medical professional
+2. Must be having a current episode of major depression OR has had an episode of major depression in the past 6 months. 
+
+We believe that machine learning is especially useful in this field because it allows for the standardization, comparison, and subsequent analysis of datasets that come from different metrics/studies. Succesful completion of this project would allow us to provide physicians and researchers with possible predictive measures for the development of psychiatric disorders. This would allow more conclusive 
+
+## Methods
+
+### Data types
+Our first task was to go about trying to decide what measurements would be most useful to building a psychiatric classifier. Naturally neuro imaging and EEG data came to mind as they are both non-invasive and risk free. However, in our search we found that securing MRI and fMRI images was extremely difficult with many studies being blocked behind a paywalls, not providing enough scope to be a psychiatric classifier, or providing a sparse amount of data points, most of these issues likely being a result of the high expenses that come with operating and owning neuroimaging technology. Due to these limitations, we setteled for using EEG datasets, which is much more inexpensive to perform and use.
+
+
+### Dataset
+The dataset we selected was an EEG dataset with 2 sets of labels from kaggle. While this data was much more plentiful than other sets we came across, it unfortunately had very little documentation, so data cleaning and analysis had to be much more of an extensive process. 
+
+#### dimensionality of our dataset
+1. Rows = 945 patients
+2. Columns = 1149, for a total of 1148 recorded features (One column being an empty divider between the recordings)
+
+#### data cleaning, feature extraction, engineering, and reduction
+Upon further analysis of the dataset
+
+
+### ML workflow
 We currently plan on mainly using K-means clustering (unsupervised) to analyze the data and potential patterns that may emerge. We will also employ linear regression (supervised) in order to draw relationships between variables and draw predictions based on said relationships.
 
 Results
