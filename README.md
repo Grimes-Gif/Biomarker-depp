@@ -17,24 +17,32 @@ We believe that machine learning is especially useful in this field because it a
 ## Methods
 
 ### Data types
-Our first task was to go about trying to decide what measurements would be most useful to building a psychiatric classifier. Naturally neuro imaging and EEG data came to mind as they are both non-invasive and risk free. However, in our search we found that securing MRI and fMRI images was extremely difficult with many studies being blocked behind a paywalls, not providing enough scope to be a psychiatric classifier, or providing a sparse amount of data points, most of these issues likely being a result of the high expenses that come with operating and owning neuroimaging technology. Due to these limitations, we setteled for using EEG datasets, which is much more inexpensive to perform and use.
+Our first task was to go about trying to decide what measurements would be most useful to building a psychiatric classifier. Naturally neuro imaging and EEG data came to mind as they are both non-invasive and risk free. However, in our search we found that securing MRI and fMRI images was extremely difficult with many studies being blocked behind a paywalls, not providing enough scope to be a psychiatric classifier, or providing a sparse amount of data points, most of these issues likely being a result of the high expenses that come with operating and owning neuroimaging technology. Due to these limitations, we setteled for using EEG datasets, which is much more inexpensive to perform and use. 
 
 
 ### Dataset
-The dataset we selected was an EEG dataset with 2 sets of labels from kaggle. While this data was much more plentiful than other sets we came across, it unfortunately had very little documentation, so data cleaning and analysis had to be much more of an extensive process. 
+The dataset we selected was an EEG dataset with 2 sets of labels from kaggle. While this data was much more plentiful than other sets we came across, it unfortunately had very little documentation, so data cleaning and analysis was a bit harder than usual.
 
-#### dimensionality of our dataset
+#### Dimensionality and Description
 1. Rows = 945 patients
 2. Columns = 1149, for a total of 1148 recorded features (One column being an empty divider between the recordings)
+3. The first 114 columns were the frequencies of each sensor with respect to a particular frequency range, categorically known as brain waves
+  - 19 electrodes, 6 brain wave classes = 114 readings 
+4. The 115th column is empty serving as the aformentioned divider
+5. The rest of the dataset from column 116 to 1149 were coherence measurments, which capture the 'communication' between regions by measuring the frequency in which the two regions share wave formations.
+6. The first set of labels consisted of strings that were the specific disorder each patient had. This set consisted of 12 unique values. 
+7. The second set of labels consisted of the more general groupings of each disorder, called the main disorders. This set consisted of 8 unique values.
 
-#### data cleaning, feature extraction, engineering, and reduction
-Upon further analysis of the dataset
+### data cleaning, feature extraction, engineering, and reduction
+Data preprocessing consisted largely of isolating subdata sets and particular features to work with that would increase metrics for our models, this was because the main bulk of the work, transferring time series data to frequency domain had already been done by the authors of the dataset using FFT. 
+
+
 
 
 ### ML workflow
 We currently plan on mainly using K-means clustering (unsupervised) to analyze the data and potential patterns that may emerge. We will also employ linear regression (supervised) in order to draw relationships between variables and draw predictions based on said relationships.
 
-Results
+## Results
 We expect to find certain features in specific brain regions that are consistent across most study subjects. A metric of success would be a high level of correlation between one or more physical brain anomolies and a corresponding psychiatric diagnosis. For example, a measure of success could be a high degree of correlation between grey matter volume in the caudate nucleus and recurrance of MDD. 
 
 Discussion
