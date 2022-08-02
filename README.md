@@ -34,7 +34,9 @@ The dataset we selected was an EEG dataset with 2 sets of labels from kaggle. Wh
 7. The second set of labels consisted of the more general groupings of each disorder, called the main disorders. This set consisted of 8 unique values.
 
 ### data cleaning, feature extraction, engineering, and reduction
-Data preprocessing consisted largely of isolating subdata sets and particular features to work with that would increase metrics for our models, this was because the main bulk of the work, transferring time series data to frequency domain had already been done by the authors of the dataset using FFT. 
+Data preprocessing consisted largely of isolating subdata sets and particular features to work with that would increase metrics for our models, this was because the main bulk of the work, transferring time series data to frequency domain had already been done by the authors of the dataset using FFT.
+
+Our initial attempts were to work with the entire dataset 
 
 
 
