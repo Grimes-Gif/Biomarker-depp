@@ -73,7 +73,7 @@ In the medical field, Support Vector Machines (SVMs) are a popular method of sup
 
 The results of applying an SVM to the above dataset is shown below. We first used a linear kernel, but the results yielded a poor ~52% accuracy rate on the test data. This makes sense, given the abysmal boundaries of classification yielded by SVC w/ linear kernel and LinearSVC. Applying an RBF Kernel yielded even worse results, as the decision boundaries were nearly non-existent. However, when a polynomial kernel was used, the accuracy of the model increased by an enormous 15%, averaging at around 71% accuracy. The bottom right figure illustrates why this was the case; the decision boundaries are much more nuanced and capture the pattern of the control and depression data.   
 
-![image](https://user-images.githubusercontent.com/8241982/182699034-5cfb6186-a088-46ba-aa37-c21f56f372b2.png)
+
 
 Other Supervised ML Algorithms used were:
 
