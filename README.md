@@ -24,7 +24,7 @@ Pictured above is a generic electrode map, with the top representing the front o
 
 
 
-## Methods
+## Methodology
 
 ### Data types
 Our first task was to go about trying to decide what measurements would be most useful to building a psychiatric classifier. Naturally neuro imaging and EEG data came to mind as they are both non-invasive and risk free. However, in our search we found that securing MRI and fMRI images was extremely difficult with many studies being blocked behind a paywalls, not providing enough scope to be a psychiatric classifier, or providing a sparse amount of data points, most of these issues likely being a result of the high expenses that come with operating and owning neuroimaging technology. Due to these limitations, we setteled for using EEG datasets, which is much more inexpensive to perform and use. 
@@ -49,9 +49,18 @@ First, columns 112 - 1000 were all coherence values between each electrode. Sinc
 Next, for the supervised learning portion, we focused on major depressive disorder (MDD), which allowed us to drop all rows pertaining to other disorders. Lastly, we focused on the frontal parietal lobe (FP1 and FP2 electrodes), as this a critical brain region involved with higher-order thinking. 
 All of these feature selections allowed us to create a workable dataset, which we run several learning algorithms on. 
 
-SUPERVISED LEARNING:
-Due to the incredibly large number of features (1000+) in the dataset, it is important to conduct informed data analysis to perform targeted machine learning. 
-This was accomplished by specifically examining the FP1 and FP2 (frontal parietal cortex) electrodes of depressed patients and healthy controls. The figures below show the frequency correlations of FP1/FP2 between depressed (blue) and control (red) for Alpha, Beta, Delta, and Theta waves. This was done to determine which waves had the largest differences between the two groups. 
+
+Note: Before actually performing an machine learning, however, some data anaylsis was required for feature selection:
+
+For supervised learning, we used Support Vector Machines, Neural Networks (Perceptron), Decision Trees, and Regression (specifically, stochastic gradient descent). For the SVMs, LinearSVC, SVC w/ a Linear Kernel, SVC with an RBF Kernal, and SVC with polynomial kernel were all tried. The polynomial SVC yielded the best results. In depth explanation of these methods are covered in the Results section.
+
+For unsupervised learning... [INSERT HERE]
+
+We currently plan on mainly using K-means clustering (unsupervised) to analyze the data and potential patterns that may emerge. We will also employ linear regression (supervised) in order to draw relationships between variables and draw predictions based on said relationships.
+
+##Results
+
+Due to the incredibly large number of features (1000+) in the dataset, it is important to conduct informed data analysis to perform targeted machine learning. This was accomplished by specifically examining the FP1 and FP2 (frontal parietal cortex) electrodes of depressed patients and healthy controls. Figure 1 shows the frequency correlations of FP1/FP2 between depressed (blue) and control (red) for Alpha, Beta, Delta, and Theta waves. This was done to determine which waves had the largest differences between the two groups. 
 
 While the Alpha, Beta, and Theta waves seem to have considerable overlap, the Delta waves tell a different story: the control subjects seem to have lower frequencies of delta waves, while the depressed subjects seem to have higher frequencies. This is illustrated by the apparent skew of blue dots towards the upper right corner and the skew of red dots towards the bottom left corner in the Delta Wave figure. 
 
@@ -93,8 +102,8 @@ Feature engineering involved normalizing the wave frequencies in order to yield 
 Data preprocessing consisted largely of isolating subdata sets and particular features to work with that would increase metrics for our models, this was because the main bulk of the work, transferring time series data to frequency domain had already been done by the authors of the dataset using FFT. Additional preprocessing done by the dataset authors included removing EOG (eye movemnt) artifacts from the frontal electrodes, allowing for a high confidence of signal to be neural in nature. 
 
 
-### ML workflow
-We currently plan on mainly using K-means clustering (unsupervised) to analyze the data and potential patterns that may emerge. We will also employ linear regression (supervised) in order to draw relationships between variables and draw predictions based on said relationships.
+
+
 
 ## Results
 We expect to find certain features in specific brain regions that are consistent across most study subjects. A metric of success would be a high level of correlation between one or more physical brain anomolies and a corresponding psychiatric diagnosis. For example, a measure of success could be a high degree of correlation between grey matter volume in the caudate nucleus and recurrance of MDD. 
