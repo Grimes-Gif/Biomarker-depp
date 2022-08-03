@@ -29,7 +29,7 @@ The dataset we selected was an EEG dataset with 2 sets of labels from kaggle. Wh
 3. The first 114 columns were the frequencies of each sensor with respect to a particular frequency range, categorically known as brain waves
   - 19 electrodes, 6 brain wave classes = 114 readings 
 4. The 115th column is empty serving as the aformentioned divider
-5. The rest of the dataset from column 116 to 1149 were coherence measurments, which capture the 'communication' between regions by measuring the frequency in which the two regions share wave formations.
+5. The rest of the dataset from column 116 to 1149 were coherence measurments, which capture the 'communication' between regions by measuring the frequency in which the two regions share wave formations. This is more formally known as phase-amplitude coupling. 
 6. The first set of labels consisted of strings that were the specific disorder each patient had. This set consisted of 12 unique values. 
 7. The second set of labels consisted of the more general groupings of each disorder, called the main disorders. This set consisted of 8 unique values.
 
