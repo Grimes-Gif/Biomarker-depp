@@ -47,6 +47,10 @@ First, columns 112 - 1000 were all coherence values between each electrode. Sinc
 Next, for the supervised learning portion, we focused on major depressive disorder (MDD), which allowed us to drop all rows pertaining to other disorders. Lastly, we focused on the frontal parietal lobe (FP1 and FP2 electrodes), as this a critical brain region involved with higher-order thinking. 
 All of these feature selections allowed us to create a workable dataset, which we run several learning algorithms on. 
 
+Feature engineering involved normalizing the wave frequencies in order to yield more accurate/consistent models.
+
+Data preprocessing consisted largely of isolating subdata sets and particular features to work with that would increase metrics for our models, this was because the main bulk of the work, transferring time series data to frequency domain had already been done by the authors of the dataset using FFT. Additional preprocessing done by the dataset authors included removing EOG (eye movemnt) artifacts from the frontal electrodes, allowing for a high confidence of signal to be neural in nature. 
+
 ### Machine Learning
 
 Note: Before actually performing an machine learning, however, some data anaylsis was required for feature selection:
@@ -96,9 +100,7 @@ The decision tree did not perform well due to the number of features in the data
 Interestingly, the SGD algorithm, on average, performed the best out of all algorithms. This is likely due to the nature of SGD, and how it is less likely to get stuck in local minima of the loss function. This is due to the fact that SGD updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. 
 
 
-Feature engineering involved normalizing the wave frequencies in order to yield more accurate/consistent models.
 
-Data preprocessing consisted largely of isolating subdata sets and particular features to work with that would increase metrics for our models, this was because the main bulk of the work, transferring time series data to frequency domain had already been done by the authors of the dataset using FFT. Additional preprocessing done by the dataset authors included removing EOG (eye movemnt) artifacts from the frontal electrodes, allowing for a high confidence of signal to be neural in nature. 
 
 
 
