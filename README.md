@@ -18,7 +18,8 @@ We believe that machine learning is especially useful in this field because it a
  
 
 
-![image](https://user-images.githubusercontent.com/8241982/182699684-c2b5c357-c85d-4445-9da6-af2226580717.png)
+<img width="436" alt="image" src="https://user-images.githubusercontent.com/8241982/182700187-c72d0a1c-597b-4943-a6c9-0809cd671b3b.png">
+
 Pictured above is a generic electrode map, with the top representing the front of the head. The electrodes are named after their respective brain region: for example, the “O1” and “O2” electrodes monitor brain activity in the occipital lobe. Likewise, the “FP1” and “FP2” electrodes monitor brain activity in the frontal cortex. 
 
 
