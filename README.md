@@ -49,6 +49,7 @@ First, columns 112 - 1000 were all coherence values between each electrode. Sinc
 Next, for the supervised learning portion, we focused on major depressive disorder (MDD), which allowed us to drop all rows pertaining to other disorders. Lastly, we focused on the frontal parietal lobe (FP1 and FP2 electrodes), as this a critical brain region involved with higher-order thinking. 
 All of these feature selections allowed us to create a workable dataset, which we run several learning algorithms on. 
 
+### Machine Learning
 
 Note: Before actually performing an machine learning, however, some data anaylsis was required for feature selection:
 
@@ -58,7 +59,7 @@ For unsupervised learning... [INSERT HERE]
 
 We currently plan on mainly using K-means clustering (unsupervised) to analyze the data and potential patterns that may emerge. We will also employ linear regression (supervised) in order to draw relationships between variables and draw predictions based on said relationships.
 
-##Results
+## Results
 
 Due to the incredibly large number of features (1000+) in the dataset, it is important to conduct informed data analysis to perform targeted machine learning. This was accomplished by specifically examining the FP1 and FP2 (frontal parietal cortex) electrodes of depressed patients and healthy controls. Figure 1 shows the frequency correlations of FP1/FP2 between depressed (blue) and control (red) for Alpha, Beta, Delta, and Theta waves. This was done to determine which waves had the largest differences between the two groups. 
 
