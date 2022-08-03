@@ -79,13 +79,13 @@ The results of applying an SVM to the above dataset is shown below. We first use
 Other Supervised ML Algorithms used were:
 
 Stochastic Gradient Descent (SGD): 71.4% Accuracy
-Multilayer Neural Network (MPL): 58%
-Decision Tree: 62%
+Multilayer Neural Network (MPL): 58% Acucuracy
+Decision Tree: 62% Accuracy
 
 The poor results given by the MLP are likely due to the lack of training data – there were only around 400 training points for the network to learn from. If more training data (several thousands) was present, the network would likely have performed better. 
 The decision tree did not perform well due to the number of features in the dataset, as the algorithm usually breaks down once a large number of features is reached. 
 
-Interestingly, the SGD algorithm, on average, performed the best out of all algorithms. 
+Interestingly, the SGD algorithm, on average, performed the best out of all algorithms. This is likely due to the nature of SGD, and how it is less likely to get stuck in local minima of the loss function. This is due to the fact that SGD updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. 
 
 
 Feature engineering involved normalizing the wave frequencies in order to yield more accurate/consistent models.
