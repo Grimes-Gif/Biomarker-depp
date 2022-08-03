@@ -54,10 +54,13 @@ This was accomplished by specifically examining the FP1 and FP2 (frontal parieta
 
 While the Alpha, Beta, and Theta waves seem to have considerable overlap, the Delta waves tell a different story: the control subjects seem to have lower frequencies of delta waves, while the depressed subjects seem to have higher frequencies. This is illustrated by the apparent skew of blue dots towards the upper right corner and the skew of red dots towards the bottom left corner in the Delta Wave figure. 
 
-![image](https://user-images.githubusercontent.com/8241982/182698982-f50c5d82-7a0e-4111-8fbc-051dc4e03af5.png)
+<img width="468" alt="image" src="https://user-images.githubusercontent.com/8241982/182700042-a8986ec1-be96-42f1-ae72-168fdfb956fd.png">
+
 
 This hypothesis is furthered by the results of running a Kernel Density Estimation on the same electrode data.  As seen below, the frequency of Delta waves is skewed to the right when compared to the control, corroborating the evidence of the scatter plots. 
 
+
+ <img width="468" alt="image" src="https://user-images.githubusercontent.com/8241982/182700078-b8dc9830-2346-4898-bbdb-e797006a6436.png">
 
  
 
