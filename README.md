@@ -87,17 +87,9 @@ The decision tree did not perform well due to the number of features in the data
 Interestingly, the SGD algorithm, on average, performed the best out of all algorithms. 
 
 
-
-
-
 Feature engineering involved normalizing the wave frequencies in order to yield more accurate/consistent models.
 
 Data preprocessing consisted largely of isolating subdata sets and particular features to work with that would increase metrics for our models, this was because the main bulk of the work, transferring time series data to frequency domain had already been done by the authors of the dataset using FFT. Additional preprocessing done by the dataset authors included removing EOG (eye movemnt) artifacts from the frontal electrodes, allowing for a high confidence of signal to be neural in nature. 
-
-
-
-
-
 
 
 ### ML workflow
