@@ -108,6 +108,7 @@ The poor results given by the MLP are likely due to the lack of training data â€
 The decision tree did not perform well due to the number of features in the dataset, as the algorithm usually breaks down once a large number of features is reached. 
 
 Interestingly, the SGD algorithm, on average, performed the best out of all algorithms. This is likely due to the nature of SGD, and how it is less likely to get stuck in local minima of the loss function. This is due to the fact that SGD updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. 
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
