@@ -33,8 +33,13 @@ The dataset we selected was an EEG dataset with 2 sets of labels from kaggle. Wh
 6. The first set of labels consisted of strings that were the specific disorder each patient had. This set consisted of 12 unique values. 
 7. The second set of labels consisted of the more general groupings of each disorder, called the main disorders. This set consisted of 8 unique values.
 
-### data cleaning, feature extraction, engineering, and reduction
-Data preprocessing consisted largely of isolating subdata sets and particular features to work with that would increase metrics for our models, this was because the main bulk of the work, transferring time series data to frequency domain had already been done by the authors of the dataset using FFT.
+### Data cleaning, Feature extraction, Engineering, and Reduction
+Initially, PCA was run on the entire dataset in order to reduce dimensionality. This was a must, as the initial dataset contains over 1000 features. After running PCA, we found that aiming for a 70% recovered variance led to 40+ components, which still wasn't ideal. Thus, we decided to divide the data into subsets using feature selection. 
+First, columns 112 - 1000 were all coherence values between each electrode. Since we were not particularly interested in these values for our current goals, we dropped these columns. This instantly made our dataset much easier to work with. 
+Next, for the supervised learning portion, we focused on major depressive disorder (MDD), which allowed us to drop all rows pertaining to other disorders. Lastly, we focused on the frontal parietal lobe (FP1 and FP2 electrodes), as this a critical brain region involved with higher-order thinking. 
+All of these feature selections allowed us to create a workable dataset, which we run several supervised algorithms on, such as stochastic gradient descent and decision trees. 
+
+Data preprocessing consisted largely of isolating subdata sets and particular features to work with that would increase metrics for our models, this was because the main bulk of the work, transferring time series data to frequency domain had already been done by the authors of the dataset using FFT. Additional preprocessing done by the dataset authors included removing EOG (eye movemnt) artifacts from the frontal electrodes, allowing for a high confidence of signal to be neural in nature. 
 
 Our initial attempts were to work with the entire dataset 
 
@@ -56,6 +61,13 @@ The only risk associated with this work would be a waste of time and resources, 
 The run times for the algorithms will vary based on the algorithm created but should not be longer than a day for each runtime and a couple of weeks until ready for deployment.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 MIDTERM REPORT:
 
