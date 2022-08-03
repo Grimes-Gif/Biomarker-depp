@@ -91,13 +91,12 @@ The results of applying an SVM to the above dataset is shown below. We first use
 Other Supervised ML Algorithms used were:
 
 Stochastic Gradient Descent (SGD): 71.4% Accuracy
+
 Multilayer Neural Network (MPL): 58% Acucuracy
+
 Decision Tree: 62% Accuracy
 
-The poor results given by the MLP are likely due to the lack of training data – there were only around 400 training points for the network to learn from. If more training data (several thousands) was present, the network would likely have performed better. 
-The decision tree did not perform well due to the number of features in the dataset, as the algorithm usually breaks down once a large number of features is reached. 
 
-Interestingly, the SGD algorithm, on average, performed the best out of all algorithms. This is likely due to the nature of SGD, and how it is less likely to get stuck in local minima of the loss function. This is due to the fact that SGD updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. 
 
 
 
@@ -105,13 +104,10 @@ Interestingly, the SGD algorithm, on average, performed the best out of all algo
 
 
 ## Discussion
-Using machine learning, we hope to be able to advance the understanding of the physical biomarkers associated with major depressive disorder. Using a database of images, we are able to distinguish unique similarities between patients. 
-MRI imaging makes it possible to use imaging as a data type, however there are some issues with MRI imaging only holding greyscale information as well as some images maybe cloudy. We would also need to corrected positioning/perspective differences in images.
-Not much research has been done in this field using machine learning. We hope to advance this method in that field and find very useful results. 
-Information on biomarkers for MDD can be very beneficial to doctors and researchers, but most of all to the patients suffering from the condition.
-The only risk associated with this work would be a waste of time and resources, which is well worth the risk for the oppurtunity this offers.
-The run times for the algorithms will vary based on the algorithm created but should not be longer than a day for each runtime and a couple of weeks until ready for deployment.
+The poor results given by the MLP are likely due to the lack of training data – there were only around 400 training points for the network to learn from. If more training data (several thousands) was present, the network would likely have performed better. 
+The decision tree did not perform well due to the number of features in the dataset, as the algorithm usually breaks down once a large number of features is reached. 
 
+Interestingly, the SGD algorithm, on average, performed the best out of all algorithms. This is likely due to the nature of SGD, and how it is less likely to get stuck in local minima of the loss function. This is due to the fact that SGD updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
