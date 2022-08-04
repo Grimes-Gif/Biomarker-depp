@@ -128,6 +128,25 @@ def disorder_vs_control_electrode(data, label, disorders, control):
         #print(newData)
     return newData
 ```
+
+Further analysis showed that these subdatasets leveled out at lower distortion, but were still too smooth to be considered good clustering. Too further reduce the noise of the dataset, we decided to try clustering by waves, seeing if that clustering around a particular frequency range would yield any meaningful results, what we got was much cleaner than previous attempts.
+
+```
+def develop_data(disorder_control, wave):
+  data = get_features(disorder_control, wave)
+  temp = disorder_control['specific.disorder']
+  data_labels = temp.replace(temp.unique(), [0, 1])
+  return data, data_labels
+
+def create_byWave(data):
+  by_Wave = []
+  for wave in wave_types:
+    new_data, labels = develop_data(data, wave)
+    by_Wave.append((new_data, labels))
+  return by_Wave
+```
+
+![Sample of clustering with refined datasets](Project%20images/Combined.png)
  
  
 
