@@ -113,6 +113,12 @@ Decision Tree: 62% Accuracy
 ### Feature Selection/Engineering/Reduction
 An important aspect of the study that needed investigation was the correlation of EEG signal between opposing electrodes. For example, we needed to verify that the FP1 electrode (right side front parietal) correlated with the FP2 eletrode (left side front parietal). This was verified by the red and blue scatter plot displayed in the Results section. 
 
+The specific features that were chosen were the frontal electrodes, as the frontal brain regions are the most important regions of interest when researching depressive disorders. Additionally, we decided to drop all coherence features due to the distortive impact it had on various learning algorithms, including clustering analysis and GMM. 
+
+Furthermore, for supervised learning, the Alpha, Theta, and Beta wave features were all dropped from the frontal electrodes. We decided to use this approach in order to maximize saliency of results: as seen in the scatter plots in the Results section, the delta waves had the least overlap for depression vs control in FP1 and FP2 electrodes. This illustrated that the delta waves were worth investigating further. 
+
+We used PCA for our dimensionality reduction because we already had to standardize our features beforehand for other reasons. Thus, it made the most sense to implement PCA, since the dataset was already normalized/standardized. Additionally, we used PCA is order to remove correlated features, such as overlapping waveforms. Moreover, the ease-of-use of PCA along with the ease of visualising the results made the algorithm a particularly attractive option for dimensionality reduction.
+
 
 
 
