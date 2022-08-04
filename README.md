@@ -15,7 +15,6 @@ Ideally the inclusion criteria is as follows:
 
 We believe that machine learning is especially useful in this field because it allows for the standardization, comparison, and subsequent analysis of datasets that come from different metrics/studies. Succesful completion of this project would allow us to provide physicians and researchers with possible predictive measures for the development of psychiatric disorders. This would allow more conclusive 
 
-
 <img width="436" alt="image" src="https://user-images.githubusercontent.com/8241982/182700187-c72d0a1c-597b-4943-a6c9-0809cd671b3b.png">
 
 Pictured above is a generic electrode map, with the top representing the front of the head. The electrodes are named after their respective brain region: for example, the “O1” and “O2” electrodes monitor brain activity in the occipital lobe. Likewise, the “FP1” and “FP2” electrodes monitor brain activity in the frontal cortex. 
@@ -130,7 +129,7 @@ def disorder_vs_control_electrode(data, label, disorders, control):
 
 Further analysis showed that these subdatasets leveled out at lower distortion, but were still too smooth to be considered good clustering. Too further reduce the noise of the dataset, we decided to try clustering by waves, seeing if that clustering around a particular frequency range would yield any meaningful results, what we got was much cleaner than previous attempts.
 
-```
+```ruby
 def develop_data(disorder_control, wave):
   data = get_features(disorder_control, wave)
   temp = disorder_control['specific.disorder']
@@ -217,7 +216,6 @@ Fowlkes-mallow score measures how 'similar' two sets of clustering are based on 
 
 Normalized mutual information measures how much the predicted assignments and true assignments 'agree' with each other. This value is 1 when there is perfect agreement and 0 when there is no agreement, or in other words the assignment and ground truth are seemingly independent. This gives us a certain correlational sense of whether or not our model is accurately predicting data points or not.
 
-
 #### Clustering analysis
 
 When discussing the clustering results, it is important to understand the nature of our measurements. 
@@ -226,7 +224,15 @@ EEG data is measured by electrodes palced atop the scalp, the non-invasive natur
 
 This can prove to be problematic due to the systemic nature of most psychiatric disorders. Schizophrenia for example, has strong visual biomarkers within the prefrontal and temporal neural structures. Having good access to only one of structure's electrical activity, can possibly leave out much needed information for classification.
 
+When comparing the effectiveness of GMM and kmeans we see that they actually performed quite similarly
 
+The average FMS for kmeans clustering
+
+![Kmeans scores](Project%20images/Kmeans%20scores.png)
+
+Kmeans only considers the average of the clusters while clustering while GMM also considers the variance, this is what causes the elliptical and circular shapes that they capture in data. This means that the variance of our data seemingly has little impact on the performance of GMM. However in certain tests with panic disorder and anxiety disorder, GMM proved to perform better in NMI scores, achieving values greater than .1 while kmeans sat around .06.
+
+Generally speaking across our data, its very difficult for it to cluster well. Only after breaking apart the datasets many times across different layers can we get the algorithms to have some form of decent clustering but nothing that would allow specific classification. This could be due to many factors such as the loss of information when transitioning from time series to frequency, or to the lack of spatial resolution in EEG data. Only have superficial electrical activity could possibly lead to data points that are unrelated and dont follow any trend. Clustering algorithms generally perform poorly when there is no real model to capture in the data, suggesting that the dataset collected doesn't accurately capture the specified target variable under the current conditions.
 
 
 ### Supervised Learning Methods
