@@ -245,10 +245,13 @@ Interestingly, the SGD algorithm, on average, performed the best out of all algo
 
 (from https://towardsdatascience.com/why-visualize-gradient-descent-optimization-algorithms-a393806eee2)
 
-This is due to the fact that SGD is online and updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. The equation used in SGD is shown below.
+This is due to the fact that SGD is online and updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. 
 
-<img width="965" alt="Stochastic" src="https://user-images.githubusercontent.com/8241982/182955637-63d004e6-068b-4729-b18e-c463fefb13c2.png">
 
+## Conclusion
+
+In this project, we looked at EEG data of psychiatric patients and healthy patients. We started by narrowing our scope to specifically patients with major depressive disorder (MDD), and then ran algorithms to reduce the dimensionality. Afterwards, we ran both unsupervised and supervised learning algorithms on the frontal lobe data of healthy patients and MDD patients. We found that after targeted dimensionality reduction, K-means clustering offered a relatively effective model, as seen from the elbow plots. Additionally, using a Support Vector Machine with a polynomial kernel yielded a model with an impressive 70% accuracy in binary classification (MDD vs no MDD). Further, stochastic gradient descent yielded a 72% accuracy.
+This project can be labelled a success, as we trained multiple models that gave acceptable accuracies (>70%). However, further research and experimentation is needed, as 70% accuracy is still too low to be used an a clinical setting. 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
