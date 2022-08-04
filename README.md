@@ -61,7 +61,7 @@ For supervised learning, we used Support Vector Machines, Neural Networks (Perce
 
 ## Unsupervised results
 
-### feature selection, engineering, and reduction
+### Feature selection, engineering, and reduction
 
 Results of Principal Component Analysis:
 
@@ -69,9 +69,9 @@ Results of Principal Component Analysis:
 
 The large number of principle componenets required suggests that the variance over the entire dataset was scattered about and not that easy to grasp, motivating the creation of subdata sets further in order to have cleaner results.
 
-Due to the incredibly large number of features (1000+) in the dataset, it is important to conduct informed data analysis to perform targeted machine learning. This was accomplished by specifically examining the FP1 and FP2 (frontal parietal cortex) electrodes of depressed patients and healthy controls. Figure 1 shows the frequency correlations of FP1/FP2 between depressed (blue) and control (red) for Alpha, Beta, Delta, and Theta waves. This was done to determine which waves had the largest differences between the two groups.
-
 ### Nonparametric methods
+
+Due to the incredibly large number of features (1000+) in the dataset, it is important to conduct informed data analysis to perform targeted machine learning. This was accomplished by specifically examining the FP1 and FP2 (frontal parietal cortex) electrodes of depressed patients and healthy controls. The figure below shows the frequency correlations of FP1/FP2 between depressed (blue) and control (red) for Alpha, Beta, Delta, and Theta waves. This was done to determine which waves had the largest differences between the two groups.
 
 While the Alpha, Beta, and Theta waves seem to have considerable overlap, the Delta waves tell a different story: the control subjects seem to have lower frequencies of delta waves, while the depressed subjects seem to have higher frequencies. This is illustrated by the apparent skew of blue dots towards the upper right corner and the skew of red dots towards the bottom left corner in the Delta Wave figure. 
 
