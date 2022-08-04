@@ -164,6 +164,14 @@ GMM was run with the same dataset and the following FMS plot was achieved:
 ![FMS for new data](Project%20images/Fowlkes%20for%20new%20datasets.png)
  
  Scores peaking at .7 around 2 or 3 componenets was exactly what we were looking for. However, as interesting as this information maybe it fails to show any differentiation between disorders, meaning a psychiatric classifier from this data alone would not be useful.
+ 
+**Seeing how K_means and GMM performed, we took a shot at hierarchial clustering to see what results that would yield**
+
+![HCSCHIZO](Project%20images/Hierarchical%20for%20cerebral%20gamma%20waves%20in%20schizo%20vs%20control.)
+
+![HCDEP](Project%20images/Hierarchical%20for%20all%20delta%20waves%20depression%20control%20set.png)
+
+Hierarchial clustering seemed to be able to find disimilarities between clusters when provided only frontal sensor data, however when temporal, occipital and parietal sensor data was introduced we began to see more noise again, with the clusters on the dendograms merging at increasingly lower intervals.
 
 
 ## Supervised results
