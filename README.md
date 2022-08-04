@@ -145,10 +145,25 @@ def create_byWave(data):
     by_Wave.append((new_data, labels))
   return by_Wave
 ```
+A sample for 4 datsets is shown below:
+
+Legend:
+1. blue -> delta
+2. green -> theta
+3. red -> alpha
+4. brown -> beta
+5. peru -> highbeta
+6. purple -> gamma
 
 ![Sample of clustering with refined datasets](Project%20images/Combined.png)
+
+Interestingly, from the results it was revealed that clustering with only the frequency of alpha rhythm from cerebral sensors (Fp and F) minimized the distortion per cluster for a majority of diseases. That isn't to suggest that strong alpha rhythm in the frontal cortecies are a good predictor of a particular disease, but rather a better indicator of abnormal electrical activity.
+
+GMM was run with the same dataset and the following FMS plot was achieved:
+
+![FMS for new data](Project%20images/Fowlkes%20for%20new%20datasets.png)
  
- 
+ Scores peaking at .7 around 2 or 3 componenets was exactly what we were looking for. However, as interesting as this information maybe it fails to show any differentiation between disorders, meaning a psychiatric classifier from this data alone would not be useful.
 
 
 ## Supervised results
