@@ -104,6 +104,7 @@ Decision Tree: 62% Accuracy
 
 
 ## Discussion
+As seen in the 
 The poor results given by the MLP are likely due to the lack of training data – there were only around 400 training points for the network to learn from. If more training data (several thousands) was present, the network would likely have performed better. 
 The decision tree did not perform well due to the number of features in the dataset, as the algorithm usually breaks down once a large number of features is reached. 
 
