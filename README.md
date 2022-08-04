@@ -178,7 +178,10 @@ Interestingly, the SGD algorithm, on average, performed the best out of all algo
 
 (from https://towardsdatascience.com/why-visualize-gradient-descent-optimization-algorithms-a393806eee2)
 
-This is due to the fact that SGD updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. 
+This is due to the fact that SGD is online and updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. The equation used in SGD is shown below.
+
+<img width="965" alt="Stochastic" src="https://user-images.githubusercontent.com/8241982/182955637-63d004e6-068b-4729-b18e-c463fefb13c2.png">
+
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
