@@ -167,7 +167,7 @@ GMM was run with the same dataset and the following FMS plot was achieved:
  
 **Seeing how K_means and GMM performed, we took a shot at hierarchial clustering to see what results that would yield**
 
-![HCSCHIZO](Project%20images/Hierarchical%20for%20cerebral%20gamma%20waves%20in%20schizo%20vs%20control.)
+![HCSCHIZO](Project%20images/Hierarchical%20for%20cerebral%20gamma%20waves%20in%20schizo%20vs%20control.png)
 
 ![HCDEP](Project%20images/Hierarchical%20for%20all%20delta%20waves%20depression%20control%20set.png)
 
