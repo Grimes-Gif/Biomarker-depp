@@ -129,6 +129,7 @@ The decision tree did not perform well due to the number of features in the data
 Interestingly, the SGD algorithm, on average, performed the best out of all algorithms. This is likely due to the nature of SGD, and how it is less likely to get stuck in local minima of the loss function (shown below).
 
 ![image](https://user-images.githubusercontent.com/8241982/182924234-4b12ac12-c3b8-440e-aed0-c89fde28ba1d.png)
+(from https://towardsdatascience.com/why-visualize-gradient-descent-optimization-algorithms-a393806eee2)
 
 This is due to the fact that SGD updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. 
 Interestingly, the SGD algorithm, on average, performed the best out of all algorithms. This is likely due to the nature of SGD, and how it is less likely to get stuck in local minima of the loss function. This is due to the fact that SGD updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. 
