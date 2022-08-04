@@ -163,7 +163,7 @@ GMM was run with the same dataset and the following FMS plot was achieved:
  
  Scores peaking at .7 around 2 or 3 componenets was exactly what we were looking for. However, as interesting as this information maybe it fails to show any differentiation between disorders, meaning a psychiatric classifier from this data alone would not be useful.
  
-**Seeing how K_means and GMM performed, we took a shot at hierarchial clustering to see what results that would yield**
+**Seeing how K_means and GMM performed, we tried hierarchial clustering and visualized the results**
 
 ![HCSCHIZO](Project%20images/Hierarchical%20for%20cerebral%20gamma%20waves%20in%20schizo%20vs%20control.png)
 
