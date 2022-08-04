@@ -11,7 +11,7 @@ The objective of this project is to use machine learning to gain insight onto po
 
 Ideally the inclusion criteria is as follows: 
 1. subject must have been diagnosed with a psychiatric disorder by a medical professional
-2. Must be having a current episode of major depression OR has had an episode of major depression in the past 6 months. 
+2. Must be having a current psychiatric episodes OR has had an episode in the past 6 months. 
 
 We believe that machine learning is especially useful in this field because it allows for the standardization, comparison, and subsequent analysis of datasets that come from different metrics/studies. Succesful completion of this project would allow us to provide physicians and researchers with possible predictive measures for the development of psychiatric disorders. This would allow more conclusive 
 
@@ -42,8 +42,8 @@ The dataset we selected was an EEG dataset with 2 sets of labels from kaggle. Wh
 7. The second set of labels consisted of the more general groupings of each disorder, called the main disorders. This set consisted of 8 unique values.
 
 ### Data cleaning, Feature extraction, Engineering, and Reduction
-Initially, PCA was run on the entire dataset in order to reduce dimensionality. This was a must, as the initial dataset contains over 1000 features. After running PCA, we found that aiming for a 70% recovered variance led to 40+ components, which still wasn't ideal. Thus, we decided to divide the data into subsets using feature selection. 
-First, columns 112 - 1000 were all coherence values between each electrode. Since we were not particularly interested in these values for our current goals, we dropped these columns. This instantly made our dataset much easier to work with. 
+1. Initially, PCA was run on the entire dataset in order to reduce dimensionality. This was a must, as the initial dataset contains over 1000 features. After running PCA, we found that aiming for even 70% recovered variance led to 40+ components, which still wasn't ideal. Thus, we decided to divide the data into subsets using feature selection. See results for more information.
+2. After PCA analysis we decided to do feature extraction, columns 116 - 1000 were all coherence values between each electrode. Since we were not particularly interested in these values and more so the raw frequencies of each wave, we dropped these columns. This instantly made our dataset much easier to work with. 
 Next, for the supervised learning portion, we focused on major depressive disorder (MDD), which allowed us to drop all rows pertaining to other disorders. Lastly, we focused on the frontal parietal lobe (FP1 and FP2 electrodes), as this a critical brain region involved with higher-order thinking. 
 All of these feature selections allowed us to create a workable dataset, which we run several learning algorithms on. 
 
@@ -53,22 +53,25 @@ Data preprocessing consisted largely of isolating subdata sets and particular fe
 
 ### Machine Learning
 
-Note: Before actually performing an machine learning, however, some data anaylsis was required for feature selection:
+For unsupervised learning (US), we used the many tools of US that allowed us to quantifiably measure and understand how certain data is distributed in a given data space. We did a kernel density estimation first on selected features that we believed would have significance, as well as clustering analysis both soft and hard to find out if certain neural oscillatory behavior followed any kind of behavior.
 
 For supervised learning, we used Support Vector Machines, Neural Networks (Perceptron), Decision Trees, and Regression (specifically, stochastic gradient descent). For the SVMs, LinearSVC, SVC w/ a Linear Kernel, SVC with an RBF Kernal, and SVC with polynomial kernel were all tried. The polynomial SVC yielded the best results. In depth explanation of these methods are covered in the Results section.
 
-For unsupervised learning... [INSERT HERE]
-
-We currently plan on mainly using K-means clustering (unsupervised) to analyze the data and potential patterns that may emerge. We will also employ linear regression (supervised) in order to draw relationships between variables and draw predictions based on said relationships.
-
 ## Results
+
+## Unsupervised results
+
+### feature selection, engineering, and reduction
+
 Results of Principal Component Analysis:
 
 ![PCA on fulldata](https://raw.githubusercontent.com/Grimes-Gif/ML_Psychiatric/main/Project%20images/PCA%20on%20fulldata.png)
 
-We decided to aim for 85% recovered variance, as this yielded the most workable amount of components. 
+The large number of principle componenets required suggests that the variance over the entire dataset was scattered about and not that easy to grasp, motivating the creation of subdata sets further in order to have cleaner results.
 
-Due to the incredibly large number of features (1000+) in the dataset, it is important to conduct informed data analysis to perform targeted machine learning. This was accomplished by specifically examining the FP1 and FP2 (frontal parietal cortex) electrodes of depressed patients and healthy controls. Figure 1 shows the frequency correlations of FP1/FP2 between depressed (blue) and control (red) for Alpha, Beta, Delta, and Theta waves. This was done to determine which waves had the largest differences between the two groups. 
+Due to the incredibly large number of features (1000+) in the dataset, it is important to conduct informed data analysis to perform targeted machine learning. This was accomplished by specifically examining the FP1 and FP2 (frontal parietal cortex) electrodes of depressed patients and healthy controls. Figure 1 shows the frequency correlations of FP1/FP2 between depressed (blue) and control (red) for Alpha, Beta, Delta, and Theta waves. This was done to determine which waves had the largest differences between the two groups.
+
+### Nonparametric methods
 
 While the Alpha, Beta, and Theta waves seem to have considerable overlap, the Delta waves tell a different story: the control subjects seem to have lower frequencies of delta waves, while the depressed subjects seem to have higher frequencies. This is illustrated by the apparent skew of blue dots towards the upper right corner and the skew of red dots towards the bottom left corner in the Delta Wave figure. 
 
@@ -77,14 +80,59 @@ While the Alpha, Beta, and Theta waves seem to have considerable overlap, the De
 
 This hypothesis is furthered by the results of running a Kernel Density Estimation on the same electrode data.  As seen below, the frequency of Delta waves is skewed to the right when compared to the control, corroborating the evidence of the scatter plots. 
 
-
  <img width="468" alt="image" src="https://user-images.githubusercontent.com/8241982/182700078-b8dc9830-2346-4898-bbdb-e797006a6436.png">
-
  
-
 This apparent difference immediately tells us that the delta waves are worth investigating further. Thus, we took our machine learning approach to build a predictive model that analyzes the delta waves in the FP1 and FP2 electrodes.
 
-SUPERVISED MACHINE LEARNING
+### Clustering analysis
+ 
+ We started clustering analysis by first performing the algorithms on all 114 measurements with our reduced dataset where each graph is the distortion against the number of clusters generated by the following algorithm:
+ 
+
+```ruby
+def KMeans_analysis(K, data):
+  distortion = []
+  predictions = []
+  x_axis = np.arange(1,K+1)
+  for i in range(1,K+1):
+    km = KMeans(n_clusters=i)
+    km.fit(data)
+    distortion.append(km.inertia_)
+    predictions.append(km.predict(data))
+  return (x_axis, distortion, predictions)
+```
+ 
+Note: The graphs were all performed on PCA reduced datasets of varying variance, with the top graph being 85 percent, and the bottom being 95
+
+ ![Elbow plot of kmeans clustering](Project%20images/Kmeans%20clustering%20on%20full%20data.png)
+ 
+It becomes evident quickly that the elbow plots generated by kmeans are very smooth, not seeming to level off at any particular point on the x axis, indicating that kmeans is having trouble clustering the data.
+
+Its possible that the shape of the data is not circular but more eliptical, so we attempted to perform a GMM analysis instead. To measure the effectiveness of GMM, we calculated some external measurements, mainly fowlkes score and the normalized mutual information, and graphed the scores against the number of componenets per mixture mode.
+
+![NMI and FMS against num componenets](Project%20images/GMM%20prediction%20on%20fulldata.png)
+
+The results of the GMM suggested that the soft clustering provided little similarity with the ground truth clustering (FMS) and that the predictions and true labels were virtually independent, never breaking past even .1.
+
+**The results of the first bout of unsupervised learning demonstrated that the dataset was incredibly noisy and needed further cleaning**
+
+As mentioned in the methods, subdata sets were generated, comparing each psychiatric disease against the healthy control for a total of 12 different subdata sets.
+
+```ruby
+def disorder_vs_control_electrode(data, label, disorders, control):
+    newData = []
+    for value in disorders:
+        #print(value)
+        a = data.loc[data[label].isin([value, control])]
+        newData.append(a)
+        #print(newData)
+    return newData
+```
+ 
+ 
+
+
+## Supervised results
 
 In the medical field, Support Vector Machines (SVMs) are a popular method of supervised machine learning. This is due to the fact SVMs specialize in binary classification, resulting in a robust medical tool to use for predictive diagnosis. 
 
@@ -113,12 +161,6 @@ Decision Tree: 62% Accuracy
 ### Feature Selection/Engineering/Reduction
 An important aspect of the study that needed investigation was the correlation of EEG signal between opposing electrodes. For example, we needed to verify that the FP1 electrode (right side front parietal) correlated with the FP2 eletrode (left side front parietal). This was verified by the red and blue scatter plot displayed in the Results section. 
 
-The specific features that were chosen were the frontal electrodes, as the frontal brain regions are the most important regions of interest when researching depressive disorders. Additionally, we decided to drop all coherence features due to the distortive impact it had on various learning algorithms, including clustering analysis and GMM. 
-
-Furthermore, for supervised learning, the Alpha, Theta, and Beta wave features were all dropped from the frontal electrodes. We decided to use this approach in order to maximize saliency of results: as seen in the scatter plots in the Results section, the delta waves had the least overlap for depression vs control in FP1 and FP2 electrodes. This illustrated that the delta waves were worth investigating further. 
-
-We used PCA for our dimensionality reduction because we already had to standardize our features beforehand for other reasons. Thus, it made the most sense to implement PCA, since the dataset was already normalized/standardized. Additionally, we used PCA is order to remove correlated features, such as overlapping waveforms. Moreover, the ease-of-use of PCA along with the ease of visualising the results made the algorithm a particularly attractive option for dimensionality reduction.
-
 
 
 
@@ -126,12 +168,6 @@ We used PCA for our dimensionality reduction because we already had to standardi
 The poor results given by the MLP are likely due to the lack of training data – there were only around 400 training points for the network to learn from. If more training data (several thousands) was present, the network would likely have performed better. 
 The decision tree did not perform well due to the number of features in the dataset, as the algorithm usually breaks down once a large number of features is reached. 
 
-Interestingly, the SGD algorithm, on average, performed the best out of all algorithms. This is likely due to the nature of SGD, and how it is less likely to get stuck in local minima of the loss function (shown below).
-
-![image](https://user-images.githubusercontent.com/8241982/182924234-4b12ac12-c3b8-440e-aed0-c89fde28ba1d.png)
-(from https://towardsdatascience.com/why-visualize-gradient-descent-optimization-algorithms-a393806eee2)
-
-This is due to the fact that SGD updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. 
 Interestingly, the SGD algorithm, on average, performed the best out of all algorithms. This is likely due to the nature of SGD, and how it is less likely to get stuck in local minima of the loss function. This is due to the fact that SGD updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
