@@ -168,7 +168,12 @@ An important aspect of the study that needed investigation was the correlation o
 The poor results given by the MLP are likely due to the lack of training data – there were only around 400 training points for the network to learn from. If more training data (several thousands) was present, the network would likely have performed better. 
 The decision tree did not perform well due to the number of features in the dataset, as the algorithm usually breaks down once a large number of features is reached. 
 
-Interestingly, the SGD algorithm, on average, performed the best out of all algorithms. This is likely due to the nature of SGD, and how it is less likely to get stuck in local minima of the loss function. This is due to the fact that SGD updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. 
+Interestingly, the SGD algorithm, on average, performed the best out of all algorithms. This is likely due to the nature of SGD, and how it is less likely to get stuck in local minima of the loss function (shown below).
+
+![image](https://user-images.githubusercontent.com/8241982/182924234-4b12ac12-c3b8-440e-aed0-c89fde28ba1d.png)
+(from https://towardsdatascience.com/why-visualize-gradient-descent-optimization-algorithms-a393806eee2)
+
+This is due to the fact that SGD updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
