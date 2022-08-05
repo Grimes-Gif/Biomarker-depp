@@ -228,11 +228,7 @@ EEG data is measured by electrodes palced atop the scalp, the non-invasive natur
 
 This can prove to be problematic due to the systemic nature of most psychiatric disorders. Schizophrenia for example, has strong visual biomarkers within the prefrontal and temporal neural structures. Having good access to only one of structure's electrical activity, can possibly leave out much needed information for classification.
 
-When comparing the effectiveness of GMM and kmeans we see that they actually performed quite similarly
-
-The average FMS for kmeans clustering
-
-![Kmeans scores](Project%20images/Kmeans%20scores.png)
+When comparing the effectiveness of GMM and kmeans we see that they actually performed quite similarly.
 
 Kmeans only considers the average of the clusters while clustering while GMM also considers the variance, this is what causes the elliptical and circular shapes that they capture in data. This means that the variance of our data seemingly has little impact on the performance of GMM. This is further supported by the NMI scores, showing that GMM and Kmeans predictions could hardly be agreed with by the ground truth analysis.
 
