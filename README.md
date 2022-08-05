@@ -64,6 +64,14 @@ For supervised learning, we used Support Vector Machines, Neural Networks (Perce
 
 Results of Principal Component Analysis:
 
+```ruby
+def compute_PCA(data, percent_Var):
+  pca = PCA(percent_Var)
+  pca.fit(data)
+  x_axis = np.arange(1,pca.n_components_ + 1)
+  return (x_axis, pca.explained_variance_ratio_, pca.fit_transform(data))
+```
+
 ![PCA on fulldata](https://raw.githubusercontent.com/Grimes-Gif/ML_Psychiatric/main/Project%20images/PCA%20on%20fulldata.png)
 
 The large number of principle componenets required suggests that the variance over the entire dataset was scattered about and not that easy to grasp, motivating the creation of subdata sets to grab data points that were related to each other in order to have cleaner results.
@@ -162,6 +170,16 @@ Legend:
 Interestingly, from the results it was revealed that clustering with only the frequency of alpha rhythm from cerebral sensors (Fp and F) minimized the distortion per cluster for a majority of diseases. That isn't to suggest that strong alpha rhythm in the frontal cortecies are a good predictor of a particular disease, but rather a better indicator of abnormal electrical activity.
 
 GMM was run with the same dataset and the following FMS plot was achieved:
+
+```blue
+def gmm_analysis(K, data, metric, arg):
+  distortion = []
+  for i in range(1,K+1):
+    gmm = GaussianMixture(i, max_iter=1000)
+    labels = gmm.fit_predict(data)
+    distortion.append(metric(arg, labels))
+  return distortion, labels
+```
 
 ![FMS for new data](Project%20images/Fowlkes%20for%20new%20datasets.png)
  
