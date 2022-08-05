@@ -40,6 +40,8 @@ The dataset we selected was an EEG dataset with 2 sets of labels from kaggle. Wh
 6. The first set of labels consisted of strings that were the specific disorder each patient had. This set consisted of 12 unique values. 
 7. The second set of labels consisted of the more general groupings of each disorder, called the main disorders. This set consisted of 8 unique values.
 
+Note: In this analysis we only used 'specific.disorder' labels which consisted of 12 unique values, more analysis can be done to see if these values were too specific to be categorized by EEG.
+
 ### Data cleaning, Feature extraction, Engineering, and Reduction
 1. Initially, PCA was run on the entire dataset in order to reduce dimensionality. This was a must, as the initial dataset contains over 1000 features. After running PCA, we found that aiming for even 70% recovered variance led to 40+ components, which still wasn't ideal. Thus, we decided to divide the data into subsets using feature selection. See results for more information.
 2. After PCA analysis we decided to do feature extraction, columns 116 - 1000 were all coherence values between each electrode. Since we were not particularly interested in these values and more so the raw frequencies of each wave, we dropped these columns. This instantly made our dataset much easier to work with. 
@@ -48,13 +50,13 @@ All of these feature selections allowed us to create a workable dataset, which w
 
 Feature engineering involved normalizing the wave frequencies in order to yield more accurate/consistent models.
 
-Data preprocessing consisted largely of isolating subdata sets and particular features to work with that would increase metrics for our models, this was because the main bulk of the work, transferring time series data to frequency domain had already been done by the authors of the dataset using FFT. Additional preprocessing done by the dataset authors included removing EOG (eye movemnt) artifacts from the frontal electrodes, allowing for a high confidence of signal to be neural in nature. 
+Data preprocessing consisted largely of isolating subdata sets and particular features to work with that would increase metrics for our models, this was because the main bulk of the work, transferring time series data to frequency domain had already been done by the authors of the dataset using FFT. Additional preprocessing done by the dataset authors included removing EOG (eye movement) artifacts from the frontal electrodes, allowing for a high confidence of signal to be neural in nature. 
 
 ### Machine Learning
 
-For unsupervised learning (US), we used the many tools of US that allowed us to quantifiably measure and understand how certain data is distributed in a given data space. We did a kernel density estimation first on selected features that we believed would have significance, as well as clustering analysis both soft and hard to find out if certain neural oscillatory behavior followed any kind of behavior.
+For unsupervised learning (US), we used the many tools available to us that quantifiably measured how certain data is distributed in a given data space. We did a kernel density estimation on selected features that we believed would have significance, as well as clustering analysis, both soft and hard, to find out if certain neural oscillatory behavior was distinguishable between values of the target labels.
 
-For supervised learning, we used Support Vector Machines, Neural Networks (Perceptron), Decision Trees, and Regression (specifically, stochastic gradient descent). For the SVMs, LinearSVC, SVC w/ a Linear Kernel, SVC with an RBF Kernal, and SVC with polynomial kernel were all tried. The polynomial SVC yielded the best results. In depth explanation of these methods are covered in the Results section.
+For supervised learning, we used Support Vector Machines, Neural Networks (Perceptron), Decision Trees, and Regression (specifically, stochastic gradient descent). For the SVMs, LinearSVC, SVC w/ a Linear Kernel, SVC with an RBF Kernal, and SVC with polynomial kernel were all tried. The polynomial SVC yielded the best results. In depth explanation of these methods are covered in the results and discussion sections.
 
 ## Results
 
@@ -64,7 +66,7 @@ Results of Principal Component Analysis:
 
 ![PCA on fulldata](https://raw.githubusercontent.com/Grimes-Gif/ML_Psychiatric/main/Project%20images/PCA%20on%20fulldata.png)
 
-The large number of principle componenets required suggests that the variance over the entire dataset was scattered about and not that easy to grasp, motivating the creation of subdata sets further in order to have cleaner results.
+The large number of principle componenets required suggests that the variance over the entire dataset was scattered about and not that easy to grasp, motivating the creation of subdata sets to grab data points that were related to each other in order to have cleaner results.
 
 #### Nonparametric methods
 
@@ -84,7 +86,7 @@ This apparent difference immediately tells us that the delta waves are worth inv
 
 ### Unsupervised results
  
- We started clustering analysis by first performing the algorithms on all 114 measurements with our reduced dataset where each graph is the distortion against the number of clusters generated by the following algorithm:
+ We started clustering analysis by first performing the algorithms on all measurements within the reduced dataset where each graph is the distortion against the number of clusters generated by the following algorithm:
  
 
 ```ruby
@@ -107,6 +109,8 @@ Note: The graphs were all performed on PCA reduced datasets of varying variance,
 It becomes evident quickly that the elbow plots generated by kmeans are very smooth, not seeming to level off at any particular point on the x axis, indicating that kmeans is having trouble clustering the data.
 
 Its possible that the shape of the data is not circular but more eliptical, so we attempted to perform a GMM analysis instead. To measure the effectiveness of GMM, we calculated some external measurements, mainly fowlkes score and the normalized mutual information, and graphed the scores against the number of componenets per mixture mode.
+
+Orange is kmeans, blue is gmm
 
 ![NMI and FMS against num componenets](Project%20images/GMM%20prediction%20on%20fulldata.png)
 
@@ -161,7 +165,7 @@ GMM was run with the same dataset and the following FMS plot was achieved:
 
 ![FMS for new data](Project%20images/Fowlkes%20for%20new%20datasets.png)
  
- Scores peaking at .7 around 2 or 3 componenets was exactly what we were looking for. However, as interesting as this information maybe it fails to show any differentiation between disorders, meaning a psychiatric classifier from this data alone would not be useful.
+ Scores peaking at .7 around 2 or 3 componenets was exactly what we were looking for. However it is also more likely that higher FMS values were achieved with lower number of componenets simply because fewer componenets meant that the number of true positives would not vary much. This is supported by the fact the graph starts highest on the first componenet and sharply decreases as more componenets are added, instead of starting low, and peaking at 2 componenets. It should also be noted that kmeans clustering performed similarly, further supporting that these results were not as meaningful. When scattering different features agaisnt each other, such as the prefrontal readings above, that the datapoints were all congealed around one central points, making labels hard to cluster.
  
 **Seeing how K_means and GMM performed, we tried hierarchial clustering and visualized the results**
 
@@ -230,9 +234,9 @@ The average FMS for kmeans clustering
 
 ![Kmeans scores](Project%20images/Kmeans%20scores.png)
 
-Kmeans only considers the average of the clusters while clustering while GMM also considers the variance, this is what causes the elliptical and circular shapes that they capture in data. This means that the variance of our data seemingly has little impact on the performance of GMM. However in certain tests with panic disorder and anxiety disorder, GMM proved to perform better in NMI scores, achieving values greater than .1 while kmeans sat around .06.
+Kmeans only considers the average of the clusters while clustering while GMM also considers the variance, this is what causes the elliptical and circular shapes that they capture in data. This means that the variance of our data seemingly has little impact on the performance of GMM. This is further supported by the NMI scores, showing that GMM and Kmeans predictions could hardly be agreed with by the ground truth analysis.
 
-Generally speaking across our data, its very difficult for it to cluster well. Only after breaking apart the datasets many times across different layers can we get the algorithms to have some form of decent clustering but nothing that would allow specific classification. This could be due to many factors such as the loss of information when transitioning from time series to frequency, or to the lack of spatial resolution in EEG data. Only have superficial electrical activity could possibly lead to data points that are unrelated and dont follow any trend. Clustering algorithms generally perform poorly when there is no real model to capture in the data, suggesting that the dataset collected doesn't accurately capture the specified target variable under the current conditions.
+Generally speaking across our data, its very difficult for it to cluster well. Only after breaking apart the datasets many times across different layers can we get the algorithms to have some form of decent distortion drop off but nothing that would allow specific classification. This could be due to many factors such as the loss of information when transitioning from time series to frequency, or to the lack of spatial resolution in EEG data. Only have superficial electrical activity could possibly lead to data points that are unrelated and dont follow any trend. Clustering algorithms generally perform poorly when there is no real model to capture in the data, suggesting that the dataset collected doesn't accurately capture the specified target variable under the current conditions.
 
 
 ### Supervised Learning Methods
