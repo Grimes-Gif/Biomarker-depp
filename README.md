@@ -171,7 +171,7 @@ Interestingly, from the results it was revealed that clustering with only the fr
 
 GMM was run with the same dataset and the following FMS plot was achieved:
 
-```blue
+```ruby
 def gmm_analysis(K, data, metric, arg):
   distortion = []
   for i in range(1,K+1):
