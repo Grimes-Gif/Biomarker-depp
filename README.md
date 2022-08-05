@@ -178,8 +178,6 @@ Hierarchial clustering seemed to be able to find disimilarities between clusters
 
 ## Supervised results
 
-In the medical field, Support Vector Machines (SVMs) are a popular method of supervised machine learning. This is due to the fact SVMs specialize in binary classification, resulting in a robust medical tool to use for predictive diagnosis. 
-
 The results of applying an SVM to the above dataset is shown below. We first used a linear kernel, but the results yielded a poor ~52% accuracy rate on the test data. This makes sense, given the abysmal boundaries of classification yielded by SVC w/ linear kernel and LinearSVC. Applying an RBF Kernel yielded even worse results, as the decision boundaries were nearly non-existent. However, when a polynomial kernel was used, the accuracy of the model increased by an enormous 15%, averaging at around 71% accuracy. The bottom right figure illustrates why this was the case; the decision boundaries are much more nuanced and capture the pattern of the control and depression data.   
 
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/8241982/182703513-d5c0f790-beb4-4f6a-a2d6-2c1831687262.png">
@@ -236,6 +234,11 @@ Generally speaking across our data, its very difficult for it to cluster well. O
 
 
 ### Supervised Learning Methods
+
+In the medical field, Support Vector Machines (SVMs) are a popular method of supervised machine learning. This is due to the fact SVMs specialize in binary classification, resulting in a robust medical tool to use for predictive diagnosis.
+
+The scoring of our models was the amount of labels it marked correctly over the whole, otherwise known as its accuracy. This allows us to measure how well our models might perform with new data.
+
 The poor results given by the MLP are likely due to the lack of training data – there were only around 400 training points for the network to learn from. If more training data (several thousands) was present, the network would likely have performed better. 
 The decision tree did not perform well due to the number of features in the dataset, as the algorithm usually breaks down once a large number of features is reached. 
 
@@ -245,7 +248,9 @@ Interestingly, the SGD algorithm, on average, performed the best out of all algo
 
 (from https://towardsdatascience.com/why-visualize-gradient-descent-optimization-algorithms-a393806eee2)
 
-This is due to the fact that SGD is online and updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study. 
+This is due to the fact that SGD is online and updates frequently, relative to other learning algorithms. For this reason, the SGD performs particularly well on large datasets such as the EEG dataset used in this study.
+
+Overall, the classification models all attempted to learn the model of our data, but only SGD and SVM provided the best results. This is likely due to the fact that the other models used, neural nets and decision trees, are highly susceptible to overfitting, especially for smaller datasets.
 
 
 ## Conclusion
