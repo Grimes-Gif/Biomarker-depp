@@ -1,7 +1,7 @@
 Link: https://grimes-gif.github.io/ML_Psychiatric/
 
 # Psychiatric classification
-Machine learning project for CS4641 at Georgia Institute of Technology
+Machine learning project at Georgia Institute of Technology
 Collab: Saif Syed Ali, Ibraheem Abutair, Matthew Johnson, Micah Grimes
 
 
