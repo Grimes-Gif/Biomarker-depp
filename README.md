@@ -1,5 +1,4 @@
-![MLinfo](https://user-images.githubusercontent.com/90532657/174424871-785ce7d2-3e6d-46a6-b7aa-ce24235c9a5f.PNG)
-
+Link: https://grimes-gif.github.io/ML_Psychiatric/
 
 # Psychiatric classification
 Machine learning project for CS4641 at Georgia Institute of Technology
