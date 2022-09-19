@@ -9,7 +9,7 @@ Collab: Saif Syed Ali, Ibraheem Abutair, Matthew Johnson, Micah Grimes
 The objective of this project is to use machine learning to gain insight onto potential predictors or biomarkers present in the brain of patients diagnosed with psychiatric disorders. 
 
 Ideally the inclusion criteria is as follows: 
-1. subject must have been diagnosed with a psychiatric disorder by a medical professional
+1. Subject must have been diagnosed with a psychiatric disorder by a medical professional
 2. Must be having a current psychiatric episodes OR has had an episode in the past 6 months. 
 
 We believe that machine learning is especially useful in this field because it allows for the standardization, comparison, and subsequent analysis of datasets that come from different metrics/studies. Succesful completion of this project would allow us to provide physicians and researchers with possible predictive measures for the development of psychiatric disorders.
