@@ -23,7 +23,7 @@ Pictured above is a generic electrode map, with the top representing the front o
 ## Methodology
 
 ### Data types
-Our first task was to go about trying to decide what measurements would be most useful to building a psychiatric classifier. Naturally neuro imaging and EEG data came to mind as they are both non-invasive and risk free. However, in our search we found that securing MRI and fMRI images was extremely difficult with many studies being blocked behind a paywalls, not providing enough scope to be a psychiatric classifier, or providing a sparse amount of data points, most of these issues likely being a result of the high expenses that come with operating and owning neuroimaging technology. Due to these limitations, we setteled for using EEG datasets, which is much more inexpensive to perform and use. 
+Our first task was to go about trying to decide what measurements would be most useful to building a psychiatric classifier. Neurological imaging and EEG data came to mind as they are both non-invasive and carry minimal risk. However, in our search we found that securing MRI/fMRI images was extremely difficult with many studies being blocked behind a paywalls, not providing enough scope to be a psychiatric classifier, or providing a sparse amount of data points. Due to these limitations, we setteled for using EEG datasets, which is much less expensive to perform and use. 
 
 
 ### Dataset
@@ -53,9 +53,9 @@ Data preprocessing consisted largely of isolating subdata sets and particular fe
 
 ### Machine Learning
 
-For unsupervised learning (US), we used the many tools available to us that quantifiably measured how certain data is distributed in a given data space. We did a kernel density estimation on selected features that we believed would have significance, as well as clustering analysis, both soft and hard, to find out if certain neural oscillatory behavior was distinguishable between values of the target labels.
+For unsupervised learning (US), we used the many tools available to us that quantifiably measured how certain data is distributed in a given data space. We performed a kernel density estimation on selected features that we believed would have significance, as well as clustering analysis, both soft and hard, to find out if certain neural oscillatory behavior was distinguishable between values of the target labels.
 
-For supervised learning, we used Support Vector Machines, Neural Networks (Perceptron), Decision Trees, and Regression (specifically, stochastic gradient descent). For the SVMs, LinearSVC, SVC w/ a Linear Kernel, SVC with an RBF Kernal, and SVC with polynomial kernel were all tried. The polynomial SVC yielded the best results. In depth explanation of these methods are covered in the results and discussion sections.
+For supervised learning, we used Support Vector Machines, Neural Networks (Perceptron), Decision Trees, and Regression (specifically, stochastic gradient descent). For the SVMs, LinearSVC, SVC w/ a Linear Kernel, SVC with an RBF Kernal, and SVC with polynomial kernel were attempted. The polynomial SVC yielded the best results. In depth explanation of these methods are covered in the results and discussion sections.
 
 ## Results
 
@@ -286,9 +286,9 @@ The target variables were a series of digits, ranging from 0 to 11, mapping to t
 #### Choice of metrics
 For our clustering algorithms performance we chose to use sum of square distances to measure the performance of Kmeans, as well as Fowlkes and normalized mutual information for our GMM. 
 
-sum of square distances was appropiate for K means as it is an apt measurement for visualizing the level of distortion across clusters. The distances will be very high when points are generally far away from their cluster and low when they are very close, giving a certain sense of 'compactness' to the data.
+Sum of square distances was appropiate for K means as it is an apt measurement for visualizing the level of distortion across clusters. The distances will be very high when points are generally far away from their cluster and low when they are very close, giving a certain sense of 'compactness' to the data.
 
-Fowlkes-mallow score measures how 'similar' two sets of clustering are based on their labels, more mathematically it is the geometric mean of the pairwise precision and recall. This measurement tells us the degree to which our clustering keeps 'true positives', or rather correct classifications of the condition. This is useful as we are making a psychiatric classifier and wish to priortise our precision and recall rather than our accuracy.
+Fowlkes-mallow score measures how 'similar' two sets of clustering are based on their labels. More mathematically, it is the geometric mean of the pairwise precision and recall. This measurement tells us the degree to which our clustering keeps 'true positives', or rather correct classifications of the condition. This is useful as we are making a psychiatric classifier and wish to priortise our precision and recall rather than our accuracy.
 
 Normalized mutual information measures how much the predicted assignments and true assignments 'agree' with each other. This value is 1 when there is perfect agreement and 0 when there is no agreement, or in other words the assignment and ground truth are seemingly independent. This gives us a certain correlational sense of whether or not our model is accurately predicting data points or not.
 
@@ -296,7 +296,7 @@ Normalized mutual information measures how much the predicted assignments and tr
 
 When discussing the clustering results, it is important to understand the nature of our measurements. 
 
-EEG data is measured by electrodes palced atop the scalp, the non-invasive nature of the procedure however severely reduces its spatial resolution. In laymens terms, EEG sensors cannot grasp electrical activity of deeper subcortical networks, and can only really read data from superficial neural activity. Understanding this is key to feature selection because it suggests that certain electrodes such as T and C, meant to read data from temporal and central neural sturctures, may not be as refined as they are reading information from structures more dorsal than ventral.
+EEG data is measured by electrodes placed atop the scalp. However, the non-invasive nature of the procedure severely reduces its spatial resolution. In laymens terms, EEG sensors cannot grasp electrical activity of deeper subcortical networks, and can only really read data from superficial neural activity. Understanding this is key to feature selection because it suggests that certain electrodes such as T and C, meant to read data from temporal and central neural structures, may not be as refined, as they are reading information from structures more dorsal than ventral.
 
 This can prove to be problematic due to the systemic nature of most psychiatric disorders. Schizophrenia for example, has strong visual biomarkers within the prefrontal and temporal neural structures. Having good access to only one of structure's electrical activity, can possibly leave out much needed information for classification.
 
@@ -304,7 +304,7 @@ When comparing the effectiveness of GMM and kmeans we see that they actually per
 
 Kmeans only considers the average of the clusters while clustering while GMM also considers the variance, this is what causes the elliptical and circular shapes that they capture in data. This means that the variance of our data seemingly has little impact on the performance of GMM. This is further supported by the NMI scores, showing that GMM and Kmeans predictions could hardly be agreed with by the ground truth analysis.
 
-Generally speaking across our data, its very difficult for it to cluster well. Only after breaking apart the datasets many times across different layers can we get the algorithms to have some form of decent distortion drop off but nothing that would allow specific classification. This could be due to many factors such as the loss of information when transitioning from time series to frequency, or to the lack of spatial resolution in EEG data. Only have superficial electrical activity could possibly lead to data points that are unrelated and dont follow any trend. Clustering algorithms generally perform poorly when there is no real model to capture in the data, suggesting that the dataset collected doesn't accurately capture the specified target variable under the current conditions.
+Generally speaking across our data, its very difficult for classification to cluster well. Only after breaking apart the datasets many times across different layers can we get the algorithms to have some form of decent distortion drop off. This could be due to many factors, such as the loss of information when transitioning from time series to frequency, or the lack of spatial resolution in EEG data. Clustering algorithms generally perform poorly when there is no real model to capture in the data, suggesting that the dataset collected doesn't accurately capture the specified target variable under the current conditions.
 
 
 ### Supervised Learning Methods
